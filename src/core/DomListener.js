@@ -4,7 +4,7 @@ export class DomListener {
     constructor($root, listeners = []) {
         if (!$root) throw new Error('invalid root');
 
-        this.$root = $root;
+        this.$root = $root; // Корневой элемент для каждого компонента
         this.listeners = listeners;
     }
 
@@ -18,7 +18,8 @@ export class DomListener {
                     `Method ${method} is not implemented in ${this.name} Component`
                 );
             }
-
+            // Привязываем контекст this для этого метода навсегда
+            // Bind используется для того, чтобы в методах (внутри компонентов) не терялся контекст
             this[method] = this[method].bind(this);
 
             this.$root.on(listener, this[method]);
@@ -41,6 +42,7 @@ export class DomListener {
     }
 }
 
+// Добавление приставки on для слушателя
 function getMethodName(eventName) {
     return 'on' + capitalize(eventName);
 }
