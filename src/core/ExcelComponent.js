@@ -10,6 +10,7 @@ export class ExcelComponent extends DomListener {
         return '';
     }
 
+    // Используется для инициализации слушателей при стартовом рендеринге
     init() {
         this.initDOMListeners();
     }

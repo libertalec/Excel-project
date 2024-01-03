@@ -17,6 +17,7 @@ export class Formula extends ExcelComponent {
         `;
     }
 
+    // Метод для слушателя который мы передаем
     onInput(event) {
         console.log(this.$root);
         // console.log(event.target.textContent.trim());

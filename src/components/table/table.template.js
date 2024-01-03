@@ -1,25 +1,36 @@
+// ASC коды букв
 const CODES = {
     A: 65,
     Z: 90,
 };
 
-function createCell() {
-    return `<div class="cell" contenteditable></div>`;
+// Создание ячеек для таблицы
+function createCell(_, col) {
+    return `<div class="cell" data-col="${col}" contenteditable></div>`;
 }
 
-function createCol(col) {
-    return `<div class="column">${col}</div>`;
+// Создание колонок для таблицы. В данном проекте колонки это буквы в заголовке
+function createCol(col, index) {
+    return `<div class="column" data-type="resizable" data-col="${index}">${col}
+                <div class="col-resize" data-resize="col"></div>
+            </div>`;
 }
 
+// Создание строки включает в себя часть row-info - номер строки, а row-data информация (в нашем случае cell)
 function createRow(index, content) {
+    const resizer = index ? '<div class="row-resize" data-resize="row"></div>' : '';
+
     return `
-        <div class="row">
-            <div class="row-info">${index ? index : ''}</div>
+        <div class="row" data-type="resizable">
+            <div class="row-info">${index ? index : ''}
+            ${resizer}
+            </div>
             <div class="row-data">${content}</div>
         </div>
     `;
 }
 
+// Парсинг кодов букв в символы
 function toChar(_, index) {
     return String.fromCharCode(CODES.A + index);
 }
@@ -28,6 +39,7 @@ export function createTable(rowsCount = 15) {
     const columnsCount = CODES.Z - CODES.A + 1;
     const rows = [];
 
+    // Заполнение первой строки с буквами в заголовке
     const cols = new Array(columnsCount)
         .fill('')
         .map(toChar)
@@ -36,6 +48,7 @@ export function createTable(rowsCount = 15) {
 
     rows.push(createRow(null, cols));
 
+    // Заполнение таблицы ячейками cell
     for (let i = 0; i < rowsCount; i++) {
         rows.push(createRow(i+1, new Array(columnsCount)
             .fill('')

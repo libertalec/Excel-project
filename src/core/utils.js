@@ -1,3 +1,4 @@
+// Метод для upperCase для первого символа слушателя
 export function capitalize(string) {
     if (typeof string!== 'string') return '';
 
