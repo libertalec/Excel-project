@@ -16,6 +16,10 @@ class Dom {
         return this.$el.outerHTML.trim();
     }
 
+    text(text) {
+        this.$el.textContent = text;
+    }
+
     // Отчистка html кода внутри элемента
     clear() {
         this.html('');
@@ -49,12 +53,33 @@ class Dom {
     get data() {
         return this.$el.dataset;
     }
+
+    id(parse) {
+        if (parse) {
+            const parsed = this.id().split(':');
+
+            return {
+                row: +parsed[0],
+                col: +parsed[1],
+            };
+        }
+        return this.data.id;
+    }
+
+    focus() {
+        this.$el.focus();
+        return this;
+    }
     closest(selector) {
         return $(this.$el.closest(selector));
     }
 
     getCoords() {
         return this.$el.getBoundingClientRect();
+    }
+
+    find(selector) {
+        return $(this.$el.querySelector(selector));
     }
 
     findAll(selector) {
@@ -64,6 +89,14 @@ class Dom {
     css(styles) {
         Object.keys(styles)
             .forEach(prop => this.$el.style[prop] = styles[prop]);
+    }
+
+    addClass(className) {
+        this.$el.classList.add(className);
+    }
+
+    removeClass(className) {
+        this.$el.classList.remove(className);
     }
 }
 

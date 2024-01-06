@@ -5,8 +5,15 @@ const CODES = {
 };
 
 // Создание ячеек для таблицы
-function createCell(_, col) {
-    return `<div class="cell" data-col="${col}" contenteditable></div>`;
+function createCell(row) {
+    return function(_, col) {
+        return `<div class="cell"
+                     data-col="${col}"
+                     data-id="${row}:${col}"
+                     data-type="cell"
+                     contenteditable
+                ></div>`;
+    };
 }
 
 // Создание колонок для таблицы. В данном проекте колонки это буквы в заголовке
@@ -49,10 +56,10 @@ export function createTable(rowsCount = 15) {
     rows.push(createRow(null, cols));
 
     // Заполнение таблицы ячейками cell
-    for (let i = 0; i < rowsCount; i++) {
-        rows.push(createRow(i+1, new Array(columnsCount)
+    for (let row = 0; row < rowsCount; row++) {
+        rows.push(createRow(row+1, new Array(columnsCount)
             .fill('')
-            .map(createCell)
+            .map(createCell(row))
             .join('')));
     }
 
