@@ -8,7 +8,7 @@ My project has:
     Data Layer,
     State Managers,
     OOP in JavaScript,
-    Observer, Facade patterns
+    Observer and Facade patterns
 
   #Optimization #Effectiveness:
     SOLID (DIP)
