@@ -12,5 +12,3 @@ My project has:
 
   #Optimization #Effectiveness:
     SOLID (DIP)
-
-Link: [excel](src/index.html)
