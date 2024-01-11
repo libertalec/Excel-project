@@ -4,7 +4,8 @@
   "description": "pure JavaScript Excel Application",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "start": "cross-env NODE_ENV=development webpack-dev-server --open",
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "lint": "npx eslint ./src"
@@ -40,6 +41,9 @@
     "eslint-config-google": "^0.14.0",
     "eslint-loader": "^4.0.2",
     "html-webpack-plugin": "^5.5.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "^23.2.0",
     "mini-css-extract-plugin": "^2.7.6",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
@@ -49,6 +53,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
+    "eslint-plugin-jest": "^27.6.2",
     "normalize.css": "^8.0.1"
   }
 }
