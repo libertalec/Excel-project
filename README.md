@@ -1,5 +1,3 @@
-[excel](src/index.html)
-
 My project has:
 
   #Consistency #Automation:
@@ -14,3 +12,5 @@ My project has:
 
   #Optimization #Effectiveness:
     SOLID (DIP)
+
+Link: [excel](src/index.html)
